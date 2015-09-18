@@ -52,7 +52,7 @@ if [ $YN != 'y' ]; then
 fi
 
 if [ $YN = 'y' ]; then
-    iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport $SERVER_PORT -j ACCEPT
+    iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport $SERVER_PORT -j ACCEPT
     read -p "Save iptables configurations? y/n" YN
     if [ $YN = 'y' ]; then
         iptables-save > /etc/sysconfig/iptables
