@@ -38,6 +38,10 @@ if [ -z $2 ]; then
     exit 4
 fi
 
+# Installing ShadowSocks
+pip install shadowsocks
+
+# Installing configuration files
 echo 'Copying the template to /etc'
 cp ss-template.conf /etc/ss.json
 
