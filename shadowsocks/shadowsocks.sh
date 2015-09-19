@@ -1,6 +1,6 @@
 #!/bin/bash
 # This script could help you install ShadowSocks onto your Linux system.
-# Dependencies: python, pip, python-crypto
+# Dependencies: python, pip, python-crypto, screen
 # Licence: MIT
 
 # Usage: sh shadowsocks.sh port password
@@ -64,5 +64,7 @@ if [ $YN = 'y' ]; then
 else
     echo 'Done...'
 fi
+
+ssserver -c /etc/ss.json
 
 exit 0
