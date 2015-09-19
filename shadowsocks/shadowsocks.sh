@@ -65,6 +65,6 @@ else
     echo 'Done...'
 fi
 
-ssserver -c /etc/ss.json
+screen -d ssserver -c /etc/ss.json
 
 exit 0
