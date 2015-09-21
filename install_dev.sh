@@ -19,8 +19,8 @@ if [ `whoami` != 'root' ]; then
 fi
 
 # Install some of dependencies
-echo "$SUDO_PASS" | sudo -S yum install -y ctags epel-release python-crypto screen python-pip vim
-echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux zsh nmon inxi wget
+echo "$SUDO_PASS" | sudo -S yum install -y ctags epel-release python-crypto screen vim
+echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux zsh nmon inxi wget python-pip
 echo "$SUDO_PASS" | sudo -S yum update -y
 
 # Install zsh
@@ -30,7 +30,6 @@ echo "$SUDO_PASS" | sudo -S sed -i "s/bash/zsh/g" /etc/default/useradd
 
 # Install vim
 $SCRIPT_LOCATION/vim/vim.sh
-
 
 # leaving the script
 cd $CURRENT_LOCATION

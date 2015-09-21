@@ -16,3 +16,5 @@ cp $ZSH_TEMPLATE_LOCATION/{.curlrc,.zshrc} ~
 if [ `whoami` = "root" ]; then
     sed -i "s/fino/rgm/g" ~/.zshrc
 fi
+
+chsh -s /bin/zsh
