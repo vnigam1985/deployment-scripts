@@ -33,3 +33,8 @@ $SCRIPT_LOCATION/vim/vim.sh
 
 # leaving the script
 cd $CURRENT_LOCATION
+
+read -p "Do you want to change root password?y/n " YN
+if [ $YN = 'y' ]; then
+    passwd
+fi
