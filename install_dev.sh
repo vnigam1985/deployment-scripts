@@ -17,15 +17,16 @@ SCRIPT_LOCATION=`cd $(dirname $0); pwd`
 read -p -s "Please enter your sudo password" SUDO_PASS
 
 # Install some of dependencies
-echo "$SUDO_PASS" | sudo -S yum install -y ctags nmon epel-release python-crypto screen python-pip
-echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux
+echo "$SUDO_PASS" | sudo -S yum install -y ctags epel-release python-crypto screen python-pip vim
+echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux zsh git nmon inxi
+echo "$SUDO_PASS" | sudo -S yum update -y
 
 # Install zsh
 cd $SCRIPT_LOCATION/zsh
 
+echo "$SUDO_PASS" | sudo -S sed -i "s/bash/zsh/g" /etc/default/useradd
 
-
-
+# Install vim
 
 
 
