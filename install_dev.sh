@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 # This file helps you to install the basic developers workspace by my personal
 # preferences.
 #
