@@ -20,4 +20,6 @@ if [ `whoami` = "root" ]; then
     sed -i "s/fino/rgm/g" ~/.zshrc
 fi
 
+touch ~/.zshrc.local
+
 chsh -s /bin/zsh
