@@ -18,7 +18,7 @@ read -p -s "Please enter your sudo password" SUDO_PASS
 
 # Install some of dependencies
 echo "$SUDO_PASS" | sudo -S yum install -y ctags epel-release python-crypto screen python-pip vim
-echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux zsh git nmon inxi
+echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux zsh nmon inxi
 echo "$SUDO_PASS" | sudo -S yum update -y
 
 # Install zsh
