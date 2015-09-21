@@ -24,7 +24,7 @@ echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux zsh nmon inxi wget 
 echo "$SUDO_PASS" | sudo -S yum update -y
 
 # Install zsh
-cd $SCRIPT_LOCATION/zsh
+$SCRIPT_LOCATION/zsh/config.sh
 
 echo "$SUDO_PASS" | sudo -S sed -i "s/bash/zsh/g" /etc/default/useradd
 
