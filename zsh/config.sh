@@ -11,7 +11,10 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
 
 # Assuming this repository has already been cloned
 
-cp $ZSH_TEMPLATE_LOCATION/{.curlrc,.zshrc} ~
+cp $ZSH_TEMPLATE_LOCATION/.zshrc ~
+if [ $(lsb_release -i | cut -f 2) = "Fedora" ]; then
+    cp $ZSH_TEMPLATE_LOCATION/.curlrc ~
+fi
 
 if [ `whoami` = "root" ]; then
     sed -i "s/fino/rgm/g" ~/.zshrc
