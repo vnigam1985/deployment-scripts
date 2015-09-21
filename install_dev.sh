@@ -27,11 +27,7 @@ cd $SCRIPT_LOCATION/zsh
 echo "$SUDO_PASS" | sudo -S sed -i "s/bash/zsh/g" /etc/default/useradd
 
 # Install vim
-
-
-
-
-
+$SCRIPT_LOCATION/vim/vim.sh
 
 
 # leaving the script
