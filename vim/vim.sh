@@ -3,7 +3,7 @@ cd ~
 mkdir -p ~/.vim/{autoload,bundle,doc,plugin,doc}
 
 cd ~/.vim/autoload
-wget -O https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+curl -O https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 cd ..
 
 cd bundle
