@@ -31,10 +31,8 @@ echo "$SUDO_PASS" | sudo -S sed -i "s/bash/zsh/g" /etc/default/useradd
 # Install vim
 $SCRIPT_LOCATION/vim/vim.sh
 
+# disable SELinux
+echo "$SUDO_PASS" | sudo -S sed -i "s/enforcing/disabled/" /etc/selinux/config
+
 # leaving the script
 cd $CURRENT_LOCATION
-
-read -p "Do you want to change root password?y/n " YN
-if [ $YN = 'y' ]; then
-    passwd
-fi
