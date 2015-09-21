@@ -4,16 +4,33 @@ mkdir -p ~/.vim/{autoload,bundle,doc,plugin,doc}
 
 cd ~/.vim/autoload
 curl -O https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-cd ..
 
-cd bundle
+cd ~/.vim/bundle
 git clone https://github.com/davidhalter/jedi-vim.git
 cd jedi-vim
 git submodule update --init
-cd ..
 
-git clone https://github.com/scrooloose/nerdcommenter.git
+cd ~/.vim/bundle
 
-git clone https://github.com/scrooloose/nerdtree.git
+if [ -d 'nerdcommenter' ]; then
+    cd nerdcommenter
+    git pull
+else
+    git clone https://github.com/scrooloose/nerdcommenter.git
+fi
 
-git clone https://github.com/scrooloose/syntastic.git
+cd ~/.vim/bundle
+if [ -d 'nerdtree' ]; then
+    cd nerdcommenter
+    git pull
+else
+    git clone https://github.com/scrooloose/nerdtree.git
+fi
+
+cd ~/.vim/bundle
+if [ -d 'syntastic' ]; then
+    cd syntastic
+    git pull
+else
+    git clone https://github.com/scrooloose/syntastic.git
+fi
