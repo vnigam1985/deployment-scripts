@@ -14,11 +14,13 @@
 CURRENT_LOCATION=`pwd`
 SCRIPT_LOCATION=`cd $(dirname $0); pwd`
 
-read -p -s "Please enter your sudo password" SUDO_PASS
+if [ `whoami` != 'root' ]; then
+    read -s -p "Please enter your sudo password" SUDO_PASS
+fi
 
 # Install some of dependencies
 echo "$SUDO_PASS" | sudo -S yum install -y ctags epel-release python-crypto screen python-pip vim
-echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux zsh nmon inxi
+echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux zsh nmon inxi wget
 echo "$SUDO_PASS" | sudo -S yum update -y
 
 # Install zsh

@@ -1,9 +1,9 @@
 #!/bin/bash
 cd ~
-mkdir -p .vim/{autoload,bundle,doc,plugin,doc}
+mkdir -p ~/.vim/{autoload,bundle,doc,plugin,doc}
 
-cd autoload
-curl -O https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+cd ~/.vim/autoload
+wget -O https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 cd ..
 
 cd bundle
