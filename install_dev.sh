@@ -34,5 +34,8 @@ $SCRIPT_LOCATION/vim/vim.sh
 # disable SELinux
 echo "$SUDO_PASS" | sudo -S sed -i "s/enforcing/disabled/" /etc/selinux/config
 
+# change skel folder
+$SCRIPT_LOCATION/skel/skel.sh
+
 # leaving the script
 cd $CURRENT_LOCATION
