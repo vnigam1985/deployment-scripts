@@ -40,5 +40,8 @@ if [ `whoami` = "root" ]; then
 fi
 
 touch ~/.zshrc.local
+cat 'alias c=clear' >> ~/.zshrc.local
+cat 'alias ..="cd .."' >> ~/.zshrc.local
+cat 'alias ...="..;.."' >> ~/.zshrc.local
 
 chsh -s /bin/zsh
