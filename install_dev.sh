@@ -20,7 +20,7 @@ fi
 
 # Install some of dependencies
 echo "$SUDO_PASS" | sudo -S yum install -y ctags epel-release python-crypto screen vim redhat-lsb-core
-echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux zsh nmon inxi wget python-pip
+echo "$SUDO_PASS" | sudo -S yum install -y htop sysstat tmux zsh nmon inxi wget python-pip ack
 echo "$SUDO_PASS" | sudo -S yum update -y
 
 # Install zsh
