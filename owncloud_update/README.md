@@ -16,5 +16,12 @@ content to my visitors.
 
 Note
 --
+This script should be located at the same level of the oc-last file. e.g. under
+/var/www:
+```
+oc-8.1.3
+oc-latest
+updater.sh
+```
 The script also changes some of the branding, e.g. title, baseurl etc. You have
 to adjust them to suit your own needs.
