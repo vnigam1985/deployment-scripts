@@ -405,3 +405,7 @@ let Tlist_Show_One_File = 0
 let Tlist_Use_Horiz_Window = 0
 let Tlist_Use_Right_Window = 1
 let Tlist_WinWidth = 40
+
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
