@@ -40,9 +40,9 @@ if [ `whoami` = "root" ]; then
 fi
 
 touch ~/.zshrc.local
-cat 'alias c=clear' >> ~/.zshrc.local
-cat 'alias ..="cd .."' >> ~/.zshrc.local
-cat 'alias ...="..;.."' >> ~/.zshrc.local
-cat 'alias inxi="inxi -v7 -c27"' >> ~/.zshrc.local
+echo 'alias c=clear' >> ~/.zshrc.local
+echo 'alias ..="cd .."' >> ~/.zshrc.local
+echo 'alias ...="..;.."' >> ~/.zshrc.local
+echo 'alias inxi="inxi -v7 -c27"' >> ~/.zshrc.local
 
 chsh -s /bin/zsh
