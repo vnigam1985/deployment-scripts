@@ -64,5 +64,9 @@ def ddns(subdomain_id, wan_ip):
 
 if __name__ == '__main__':
     subdomain_id = retrieve_id()
+    if subdomain_id is None:
+        print("Sub domain not found.", file=sys.stderr)
+        sys.exit(2)
+        
     current_wan_ip = getip()
     ddns(subdomain_id, current_wan_ip)
