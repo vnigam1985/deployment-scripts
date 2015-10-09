@@ -8,5 +8,9 @@ if [ `whoami` != 'root' ]; then
     exit 1
 fi
 
-yum install tmux -y
+if [ -z $INSTALLER ]; then
+    INSTALLER=yum
+fi
+
+$INSTALLER install tmux -y
 
