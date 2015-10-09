@@ -1,4 +1,7 @@
 #!/bin/sh
+# This script copies the zsh configuration to skel folder to ease the new user
+# creation process
+# License: MIT
 
 ZSH_TEMPLATE_LOCATION=$(cd `dirname $0`;cd ..;cd zsh; pwd)
 
