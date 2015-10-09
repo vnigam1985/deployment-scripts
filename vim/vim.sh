@@ -1,4 +1,7 @@
 #!/bin/bash
+# This script downloads my collected bundles and plugins for vim.
+# Support all Unix OSes.
+# License: MIT
 SCRIPT_LOCATION=`cd $(dirname $0); pwd`
 cp SCRIPT_LOCATION/.vimrc ~
 cd ~

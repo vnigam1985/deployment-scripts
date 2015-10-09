@@ -1,4 +1,5 @@
 #!/bin/sh
+# This script copies my flavour of zsh to your desktop.
 ZSH_TEMPLATE_LOCATION=$(cd `dirname $0`; pwd)
 
 # assume you have installed zsh
@@ -15,18 +16,8 @@ else
 fi
 
 cd ~
-# Assuming this repository has already been cloned
-
-if [ `whoami` = "root" ]; then
-    if [ ! -d "/etc/skel/.oh-my-zsh" ]; then
-        git clone https://github.com/robbyrussell/oh-my-zsh.git /etc/skel/.oh-my-zsh
-    fi
-    touch /etc/skel/.zshrc.local
-    cp $ZSH_TEMPLATE_LOCATION/.zshrc /etc/skel/
-fi
 
 cp $ZSH_TEMPLATE_LOCATION/.zshrc ~
-
 # Copy over curlrc
 if [ $(lsb_release -i | cut -f 2) = "Fedora" ]; then
     cp $ZSH_TEMPLATE_LOCATION/.curlrc ~
