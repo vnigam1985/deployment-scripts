@@ -1,4 +1,6 @@
 #!/bin/bash
+SCRIPT_LOCATION=`cd $(dirname $0); pwd`
+cp SCRIPT_LOCATION/.vimrc ~
 cd ~
 mkdir -p ~/.vim/{autoload,bundle,doc,plugin,doc}
 
@@ -34,3 +36,4 @@ if [ -d 'syntastic' ]; then
 else
     git clone https://github.com/scrooloose/syntastic.git
 fi
+
