@@ -39,10 +39,10 @@ if [ `whoami` = "root" ]; then
     sed -i "s/fino/rgm/g" ~/.zshrc
 fi
 
-touch ~/.zshrc.local
 echo 'alias c=clear' >> ~/.zshrc.local
 echo 'alias ..="cd .."' >> ~/.zshrc.local
 echo 'alias ...="..;.."' >> ~/.zshrc.local
 echo 'alias inxi="inxi -v7 -c27"' >> ~/.zshrc.local
+echo 'alias l="ls -lah"' >> ~/.zshrc.local
 
 chsh -s /bin/zsh
