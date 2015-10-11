@@ -10,6 +10,16 @@
 #   tmux
 # only.
 
+# Env variables:
+CURRENT_LOCATION=`pwd`
+SCRIPT_LOCATION=`cd $(dirname $0); pwd`
+
+if [ `whoami` != 'root' ]; then
+    read -s -p "Please enter your sudo password: " SUDO_PASS
+fi
+
+echo "$SUDO_PASS" | sudo -S $INSTALLER install -y redhat-lsb-core
+
 DIST=$(lsb_release -d | awk '{print $2}')
 
 if [ $DIST = "Fedora" ]; then
@@ -19,14 +29,6 @@ elif [ $DIST = "CentOS" ]; then
 else
     echo "Not supported"
     exit 1
-fi
-
-# Env variables:
-CURRENT_LOCATION=`pwd`
-SCRIPT_LOCATION=`cd $(dirname $0); pwd`
-
-if [ `whoami` != 'root' ]; then
-    read -s -p "Please enter your sudo password: " SUDO_PASS
 fi
 
 # Install some of dependencies
