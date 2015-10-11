@@ -12,10 +12,12 @@ if [ `whoami` = "root" ]; then
         cd .oh-my-zsh
         git pull
     fi
-    echo 'alias c=clear' >> /etc/skel/.zshrc.local
-    echo 'alias l="ls -lah"' >> /etc/skel/.zshrc.local
-    echo 'alias ..="cd .."' >> /etc/skel/.zshrc.local
-    echo 'alias ...="..;.."' >> /etc/skel/.zshrc.local
+    if [ ! -e /etc/skel/.zshrc.local ]; then
+        echo 'alias c=clear' >> /etc/skel/.zshrc.local
+        echo 'alias l="ls -lah"' >> /etc/skel/.zshrc.local
+        echo 'alias ..="cd .."' >> /etc/skel/.zshrc.local
+        echo 'alias ...="..;.."' >> /etc/skel/.zshrc.local
+    fi
     cp $ZSH_TEMPLATE_LOCATION/.zshrc /etc/skel/
 else
     echo "Not root, skip"
