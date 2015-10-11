@@ -3,7 +3,7 @@
 # Support all Unix OSes.
 # License: MIT
 SCRIPT_LOCATION=`cd $(dirname $0); pwd`
-cp SCRIPT_LOCATION/.vimrc ~
+cp $SCRIPT_LOCATION/.vimrc ~
 cd ~
 mkdir -p ~/.vim/{autoload,bundle,doc,plugin,doc}
 
