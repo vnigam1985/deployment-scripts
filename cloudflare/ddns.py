@@ -7,7 +7,6 @@ import requests as rq
 import json
 import sys
 import subprocess
-import pdb
 
 API_URL = "https://www.cloudflare.com/api_json.html"
 
