@@ -1,4 +1,6 @@
 #!/bin/sh
+# Only support CentOS 5/6, it will prompt you with mysql installation at the
+# final stage.
 
 if [ `whoami` != 'root' ]; then
     echo "Need to be root."
