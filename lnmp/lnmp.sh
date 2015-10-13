@@ -10,6 +10,11 @@ fi
 # install requested yum utils
 yum install yum-utils yum-plugin-priorities epel-release redhat-lsb-core -y
 
+if [ `lsb_release -d | awk '{print $2}'` -ne "CentOS" ]; then
+    echo "Support for CentOS only"
+    exit 1
+fi
+
 VERSION=`lsb_release -r | awk '{print $2}' | awk 'BEGIN { FS = "." }; {print $1}'`
 
 yum install http://rpms.famillecollet.com/enterprise/remi-release-${VERSION}.rpm -y
