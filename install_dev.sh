@@ -18,7 +18,8 @@ if [ `whoami` != 'root' ]; then
     read -s -p "Please enter your sudo password: " SUDO_PASS
 fi
 
-echo "$SUDO_PASS" | sudo -S yum install -y redhat-lsb-core
+echo "$SUDO_PASS" | sudo -S yum install -y redhat-lsb-core vim
+echo "$SUDO_PASS" | sudo -S yum groupinstall -y "Development Tool"
 
 DIST=$(lsb_release -d | awk '{print $2}')
 

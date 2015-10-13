@@ -1,12 +1,13 @@
 #!/bin/sh
 # This script is used for deployment scripting purpose. It executes straightly
 # after the system installation and it is supposely to be run under root.
-
-if [ -z $INSTALLER ]; then
-    INSTALLER=yum
+# Use this: wget url -O /tmp/prep.sh; sh /tmp/prep.sh
+# only works under root
+if [ `whoami` != 'root' ]; then
+    echo "Needs to be root"
+    exit 1
 fi
 
-$INSTALLER install -y git
-cd ~
-git clone https://github.com/hlx98007/deployment-scripts.git ~/deployment-scripts
-~/deployment-script/install_dev.sh
+yum install git -y
+git clone https://github.com/hlx98007/deployment-scripts.git ~/prep
+sh ~/prep/install_dev.sh
