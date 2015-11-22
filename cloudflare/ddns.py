@@ -38,6 +38,7 @@ def retrieve_id():
         if subdomain['display_name'] == SUBDOMAIN:
             return subdomain['rec_id']
 
+    return None
 
 def getip():
     """ Get the local ipv4 and return it. """
