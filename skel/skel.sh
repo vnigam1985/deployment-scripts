@@ -9,7 +9,7 @@ if [ `whoami` = "root" ]; then
     if [ ! -d "/etc/skel/.oh-my-zsh" ]; then
         git clone https://github.com/robbyrussell/oh-my-zsh.git /etc/skel/.oh-my-zsh
     else
-        cd .oh-my-zsh
+        cd /etc/skel/.oh-my-zsh
         git pull
     fi
     if [ ! -e /etc/skel/.zshrc.local ]; then

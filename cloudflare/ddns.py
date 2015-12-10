@@ -17,7 +17,7 @@ if len(sys.argv) == 5:
     DOMAIN = sys.argv[3]
     SUBDOMAIN = sys.argv[4]
 else:
-    print("Please provide appkey, email domain name and subdomain name")
+    print("Please provide appkey, email, domain name and subdomain name")
     sys.exit(1)
 
 
@@ -38,6 +38,7 @@ def retrieve_id():
         if subdomain['display_name'] == SUBDOMAIN:
             return subdomain['rec_id']
 
+    return None
 
 def getip():
     """ Get the local ipv4 and return it. """
