@@ -11,7 +11,7 @@ release=`lsb_release -r | awk '{print $2}'`
 
 # install RPMFusion for different distro
 if [ $distribution = 'Fedora' ]; then
-    yum install python-pip python-keybinder http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$release -y
+    dnf install python-pip python-keybinder http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-${release}.noarch.rpm -y
 elif [ $distribution = 'CentOS' ]; then
     yum install epel-release -y
     if [ $release = '7' ]; then
@@ -31,7 +31,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # install netease musicbox
-pip install NetEase-MusicBox
+pip2 install NetEase-MusicBox
 # comment this out if you are living within China.
 grep '151.80' /etc/hosts > /dev/null 2>&1
 
