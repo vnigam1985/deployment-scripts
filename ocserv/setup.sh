@@ -3,7 +3,7 @@
 # Usage: setup.sh /path/to/server.key /path/to/server.crt /path/to/ca.crt username password
 # default VPN group is: vpn
 # default internal ip: 192.168.238.*
-if [ -z $3 ]; then
+if [ -z $5 ]; then
     echo "Usage: setup.sh /path/to/server.key /path/to/server.crt\
  /path/to/ca.crt username password"
     exit 1
