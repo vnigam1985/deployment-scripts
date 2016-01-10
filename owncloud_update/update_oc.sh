@@ -1,4 +1,5 @@
 #!/bin/sh
+# remember to enable (default disabled) rememberlogin in your apps.
 if [ -z $1 ]; then
     echo "Please give the version number"
     exit 1
