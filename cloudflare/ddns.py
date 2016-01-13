@@ -48,10 +48,9 @@ def retrieve_id():
     return None
 
 def getip():
-    """ Get the local ipv4 and return it. """
-    args = ['curl', '-L', '-4', '-s', 'http://ip.luxing.im']
-    p = subprocess.Popen(args, stdout=subprocess.PIPE)
-    return p.communicate()[0].strip()
+    """ Get the WAN ip (ipv4) and return it. """
+    resp = rq.get('http://ip.luxing.im')
+    return resp.text.strip().encode('ascii')
 
 
 def ddns(subdomain_id, wan_ip):
