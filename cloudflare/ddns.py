@@ -86,8 +86,8 @@ if __name__ == '__main__':
         sys.exit(2)
 
     if arg_length == 6:
-        current_wan_ip = get_my_internal_ip(dev)
+        myip = get_my_internal_ip(dev)
     else:
-        current_wan_ip = getip()
+        myip = getip()
 
-    ddns(subdomain_id, current_wan_ip)
+    ddns(subdomain_id, myip)
