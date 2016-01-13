@@ -23,8 +23,8 @@ if arg_length >= 5:
     if arg_length == 6:
       dev = sys.argv[5]
 else:
-    print("%s appkey email domain_name subdomain_name [device]" % sys.argv[0],
-        file=sys.stderr)
+    print("Usage: %s appkey email domain_name subdomain_name [device]" \
+        % sys.argv[0], file=sys.stderr)
     sys.exit(1)
 
 
