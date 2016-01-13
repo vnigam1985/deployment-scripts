@@ -57,7 +57,7 @@ def ddns(subdomain_id, wan_ip):
 
     if ret_json['result'] != 'success':
         print("Update fail.", file=sys.stderr)
-        print(ret_json['msg'])
+        print(ret_json['msg'], file=sys.stderr)
     else:
         print("success")
 
