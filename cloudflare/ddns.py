@@ -49,7 +49,7 @@ def retrieve_id():
 
 def getip():
     """ Get the WAN ip (ipv4) and return it. """
-    resp = rq.get('http://ip.luxing.im')
+    resp = rq.get('http://ipv4.luxing.im')
     return resp.text.strip().encode('ascii')
 
 
