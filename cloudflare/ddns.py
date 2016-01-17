@@ -49,7 +49,7 @@ def retrieve_id():
 
 def getip():
     """ Get the WAN ip (ipv4) and return it. """
-    resp = rq.get('http://ip.luxing.im')
+    resp = rq.get('http://ipv4.luxing.im')
     return resp.text.strip().encode('ascii')
 
 
@@ -72,7 +72,7 @@ def get_my_internal_ip(dev):
     """
     Grab from https://github.com/lilydjwg/winterpy/blob/master/pylib/netutils.py
     """
-    ifname = ifname.encode("ascii")
+    ifname = dev.encode("ascii")
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     ip = socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack('256s',
         ifname[:15]))[20:24])
