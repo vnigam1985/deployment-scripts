@@ -139,10 +139,10 @@ if __name__ == "__main__":
   if args.ifyes is False:
     if os.path.exists(args.merged):
       answer = raw_input("Do you really want to overwrite %s? type YES to proceed: " % args.merged).strip()
-      merge_fp = open(args.merged, 'w')
       if answer != "YES":
         print("Abort.", file=sys.stderr)
         sys.exit(2)
+      merge_fp = open(args.merged, 'w')
 
   json.dump(merge_json, merge_fp, sort_keys=True, indent=2)
   merge_fp.close()
