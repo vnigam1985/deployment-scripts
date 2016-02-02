@@ -82,7 +82,7 @@ def merge(j_env1, j_env2):
       if isinstance(j_env1[key], dict) and isinstance(j_env2[key], dict):
         # if env1 is a dict, stop
         if j_env1[key].has_key(DEFAULT_KEYWORD) or j_env2[key].has_key(DEFAULT_KEYWORD):
-          print("1st environment must not be a template.", file=sys.stderr)
+          print("either environments must not be dict templates on %s." % key, file=sys.stderr)
           sys.exit(2)
         # Recursive call to build json's sub tree.
         j_template[key] = merge(j_env1[key], j_env2[key])
