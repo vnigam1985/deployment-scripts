@@ -23,7 +23,7 @@ echo "$SUDO_PASS" | sudo -S yum groupinstall -y "Development Tool"
 
 DIST=$(lsb_release -d | awk '{print $2}')
 
-if [ $DIST = "Fedora" ]; then
+if [[ $DIST = "Fedora" ]]; then
     export INSTALLER=dnf
 elif [ $DIST = "CentOS" ]; then
     export INSTALLER=yum
