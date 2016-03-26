@@ -2,6 +2,7 @@
 # This script updates the DNS record of the subdomain.domain you wanted to
 # edit, act like a simple DDNS update.
 # Only support A record and IPv4 address
+# This is using Cloudflare API V1 methods.
 from __future__ import print_function
 import requests as rq
 import json
@@ -73,6 +74,20 @@ def ddns(subdomain_id, wan_ip):
         print("success")
 
 
+def create_dns(subdomain, wan_ip):
+    """ Creates the DNS record. """
+    rqdata = {'a' : 'rec_new', 'tkn' : APPKEY, 'email' : EMAIL, 'z' : DOMAIN,
+            'type' : 'A', 'content' : wan_ip, 'name' : subdomain, 'ttl' : 1}
+
+    ret = rq.post(API_URL, data=rqdata)
+
+    ret_json = json.loads(ret.text)
+
+    if ret_json['result'] != 'success':
+        print("Unable to create the subdomain %s" % subdomain, file=sys.stderr)
+        sys.exit(1)
+
+
 def get_my_internal_ip(dev):
     """
     Grab from https://github.com/lilydjwg/winterpy/blob/master/pylib/netutils.py
@@ -85,9 +100,6 @@ def get_my_internal_ip(dev):
 
 if __name__ == '__main__':
     subdomain_id = retrieve_id()
-    if subdomain_id is None:
-        print("Sub domain not found.", file=sys.stderr)
-        sys.exit(2)
 
     if arg_length == 6:
         if dev != 'default':
@@ -97,4 +109,7 @@ if __name__ == '__main__':
     else:
         myip = getip()
 
-    ddns(subdomain_id, myip)
+    if subdomain_id is None:
+        create_dns(SUBDOMAIN, myip)
+    else:
+        ddns(subdomain_id, myip)
