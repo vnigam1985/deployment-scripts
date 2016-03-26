@@ -10,9 +10,11 @@ import subprocess
 import socket
 import fcntl
 import struct
+import time
 
 API_URL = "https://www.cloudflare.com/api_json.html"
 arg_length = len(sys.argv)
+sleep_s = 0.0
 
 # Get global value
 if arg_length >= 5:
@@ -21,25 +23,28 @@ if arg_length >= 5:
     DOMAIN = sys.argv[3]
     SUBDOMAIN = sys.argv[4]
     if arg_length == 6:
-      dev = sys.argv[5]
+        dev = sys.argv[5]
+    if arg_length == 7:
+        sleep_s = float(sys.argv[6])
 else:
     print("Usage: %s appkey email domain_name subdomain_name [device]" \
-        % sys.argv[0], file=sys.stderr)
+            % sys.argv[0], file=sys.stderr)
     sys.exit(1)
 
+time.sleep(sleep_s)
 
 def retrieve_id():
     """ Get the record id in CloudFlare system """
     rqdata = {'a' : "rec_load_all", 'tkn' : APPKEY, 'email' : EMAIL, 'z' : DOMAIN}
-    
+
     ret = rq.post(API_URL, data=rqdata)
-    
+
     ret_json = json.loads(ret.text)
-    
+
     if ret_json['result'] != 'success':
         print("Retrieve failed for domain %s" % DOMAIN, file=sys.stderr)
         sys.exit(1)
-    
+
     objs = ret_json['response']['recs']['objs']
     for subdomain in objs:
         if subdomain['display_name'] == SUBDOMAIN:
@@ -85,7 +90,10 @@ if __name__ == '__main__':
         sys.exit(2)
 
     if arg_length == 6:
-        myip = get_my_internal_ip(dev)
+        if dev != 'default':
+            myip = get_my_internal_ip(dev)
+        else:
+            myip = getip()
     else:
         myip = getip()
 
