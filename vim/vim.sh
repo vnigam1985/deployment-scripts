@@ -40,6 +40,14 @@ else
     git clone https://github.com/scrooloose/syntastic.git
 fi
 
+cd ~/.vim/bundle
+if [ -d 'indentLine' ]; then
+    cd indentLine
+    git pull
+else
+    git clone https://github.com/Yggdroot/indentLine.git
+fi
+
 curl -sL 'http://www.vim.org/scripts/download_script.php?src_id=19574' -o /tmp/taglist.zip
 unzip /tmp/taglist.zip -d ~/.vim
 rm /tmp/taglist.zip

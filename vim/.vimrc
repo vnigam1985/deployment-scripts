@@ -409,3 +409,6 @@ let Tlist_WinWidth = 40
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+
+let g:indentLine_color_term = 242
+let g:indentLine_char = '┆'
