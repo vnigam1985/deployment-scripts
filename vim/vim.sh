@@ -11,9 +11,12 @@ cd ~/.vim/autoload
 curl -O https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
 cd ~/.vim/bundle
-git clone https://github.com/davidhalter/jedi-vim.git
-cd jedi-vim
-git submodule update --init
+if [ -d 'jedi-vim' ]; then
+    cd jedi-vim
+    git pull
+else
+    git clone --recursive https://github.com/davidhalter/jedi-vim.git
+fi
 
 cd ~/.vim/bundle
 
