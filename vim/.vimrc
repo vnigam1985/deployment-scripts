@@ -413,3 +413,4 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 let g:indentLine_color_term = 242
 let g:indentLine_char = '┆'
+let g:indentLine_conceallevel = 0
