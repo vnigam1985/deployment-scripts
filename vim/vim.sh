@@ -13,6 +13,8 @@ curl -O https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pat
 cd ~/.vim/bundle
 if [ -d 'jedi-vim' ]; then
     cd jedi-vim
+    git stash
+    git stash drop
     git pull
 else
     git clone --recursive https://github.com/davidhalter/jedi-vim.git
@@ -22,6 +24,8 @@ cd ~/.vim/bundle
 
 if [ -d 'nerdcommenter' ]; then
     cd nerdcommenter
+    git stash
+    git stash drop
     git pull
 else
     git clone https://github.com/scrooloose/nerdcommenter.git
@@ -30,6 +34,8 @@ fi
 cd ~/.vim/bundle
 if [ -d 'nerdtree' ]; then
     cd nerdcommenter
+    git stash
+    git stash drop
     git pull
 else
     git clone https://github.com/scrooloose/nerdtree.git
@@ -38,6 +44,8 @@ fi
 cd ~/.vim/bundle
 if [ -d 'syntastic' ]; then
     cd syntastic
+    git stash
+    git stash drop
     git pull
 else
     git clone https://github.com/scrooloose/syntastic.git
@@ -46,6 +54,8 @@ fi
 cd ~/.vim/bundle
 if [ -d 'indentLine' ]; then
     cd indentLine
+    git stash
+    git stash drop
     git pull
 else
     git clone https://github.com/Yggdroot/indentLine.git
