@@ -12,10 +12,8 @@ curl -O https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pat
 
 cd ~/.vim/bundle
 if [ -d 'jedi-vim' ]; then
-    cd jedi-vim
-    git stash
-    git stash drop
-    git pull
+    rm -rf jedi-vim
+    git clone --recursive https://github.com/davidhalter/jedi-vim.git
 else
     git clone --recursive https://github.com/davidhalter/jedi-vim.git
 fi
