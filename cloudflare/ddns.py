@@ -1,57 +1,38 @@
 #!/usr/bin/python
-# This script updates the DNS record of the subdomain.domain you wanted to
-# edit, act like a simple DDNS update.
-# Only support A record and IPv4 address
-# This is using Cloudflare API V1 methods.
-from __future__ import print_function
-import requests as rq
-import json
-import sys
-import subprocess
-import socket
-import fcntl
-import struct
-import time
+"""
+Please install cloudflare via pip, e.g. `pip install cloudflare`
 
-API_URL = "https://www.cloudflare.com/api_json.html"
-arg_length = len(sys.argv)
-sleep_s = 0.0
+This script handles the creation and update on a given domain, subdomain and an
+IP which either be the public IP by default, or an internal IP if given device
+name.
+
+It only handles the IP and everything else is default or remain the same.
+"""
+from __future__ import print_function
+import sys
+import requests as rq
+import CloudFlare
+import socket
+import struct
+import fcntl
 
 # Get global value
+arg_length = len(sys.argv)
+
 if arg_length >= 5:
     APPKEY = sys.argv[1]
     EMAIL = sys.argv[2]
     DOMAIN = sys.argv[3]
     SUBDOMAIN = sys.argv[4]
+    DEV = None
     if arg_length == 6:
-        dev = sys.argv[5]
-    if arg_length == 7:
-        sleep_s = float(sys.argv[6])
+        DEV = sys.argv[5]
 else:
     print("Usage: %s appkey email domain_name subdomain_name [device]" \
             % sys.argv[0], file=sys.stderr)
     sys.exit(1)
 
-time.sleep(sleep_s)
-
-def retrieve_id():
-    """ Get the record id in CloudFlare system """
-    rqdata = {'a' : "rec_load_all", 'tkn' : APPKEY, 'email' : EMAIL, 'z' : DOMAIN}
-
-    ret = rq.post(API_URL, data=rqdata)
-
-    ret_json = json.loads(ret.text)
-
-    if ret_json['result'] != 'success':
-        print("Retrieve failed for domain %s" % DOMAIN, file=sys.stderr)
-        sys.exit(1)
-
-    objs = ret_json['response']['recs']['objs']
-    for subdomain in objs:
-        if subdomain['display_name'] == SUBDOMAIN:
-            return subdomain['rec_id']
-
-    return None
+cf = CloudFlare.CloudFlare(EMAIL, APPKEY)
 
 def getip():
     """ Get the WAN ip (ipv4) and return it. """
@@ -59,33 +40,54 @@ def getip():
     return resp.text.strip().encode('ascii')
 
 
-def ddns(subdomain_id, wan_ip):
-    """ Update the record """
-    rqdata = {'a': 'rec_edit', 'z' : DOMAIN, 'type' : 'A', 'id' : subdomain_id,
-            'name' : SUBDOMAIN, 'content' : wan_ip, 'ttl' : 1, "service_mode" :
-            0, 'tkn' : APPKEY, 'email' : EMAIL}
-    ret = rq.post(API_URL, data=rqdata)
-    ret_json = json.loads(ret.text)
+def get_zone_id():
+    """
+    Get the zone id.
+    """
+    zones = cf.zones.get()
+    for zone in zones:
+        if zone['name'] == DOMAIN:
+            zone_id = zone['id']
 
-    if ret_json['result'] != 'success':
-        print("Update fail.", file=sys.stderr)
-        print(ret_json['msg'], file=sys.stderr)
-    else:
-        print("success")
+    return zone_id
 
 
-def create_dns(subdomain, wan_ip):
-    """ Creates the DNS record. """
-    rqdata = {'a' : 'rec_new', 'tkn' : APPKEY, 'email' : EMAIL, 'z' : DOMAIN,
-            'type' : 'A', 'content' : wan_ip, 'name' : subdomain, 'ttl' : 1}
+def update_dns(record, ip):
+    """
+    Update the given DNS record.
 
-    ret = rq.post(API_URL, data=rqdata)
+    Returns nothing
+    """
+    zone_id = record['zone_id']
+    domain_id = record['id']
+    record['content'] = ip
+    ret = cf.zones.dns_records.put(zone_id, domain_id, data=record)
 
-    ret_json = json.loads(ret.text)
 
-    if ret_json['result'] != 'success':
-        print("Unable to create the subdomain %s" % subdomain, file=sys.stderr)
-        sys.exit(1)
+def create_dns(ip):
+    """
+    Create the DNS record for the subdomain if one does not exist.
+
+    Returns Nothing
+    """
+    zone_id = get_zone_id()
+    ret = cf.zones.dns_records.post(zone_id, data={'type' : 'A',
+        'name' : SUBDOMAIN, 'content' : ip})
+
+
+def check_subdomain_exists():
+    """
+    Check whether the subdomain already exists.
+
+    Return the record json or False
+    """
+    zone_id = get_zone_id()
+    records = cf.zones.dns_records.get(zone_id)
+    for record in records:
+        if record['name'].lower() == '%s.%s' % (SUBDOMAIN.lower(), DOMAIN.lower()):
+            return record
+
+    return False
 
 
 def get_my_internal_ip(dev):
@@ -99,17 +101,13 @@ def get_my_internal_ip(dev):
     return ip
 
 if __name__ == '__main__':
-    subdomain_id = retrieve_id()
-
-    if arg_length == 6:
-        if dev != 'default':
-            myip = get_my_internal_ip(dev)
-        else:
-            myip = getip()
+    if DEV:
+        ip = get_my_internal_ip(DEV)
     else:
-        myip = getip()
+        ip = getip()
 
-    if subdomain_id is None:
-        create_dns(SUBDOMAIN, myip)
+    record = check_subdomain_exists()
+    if record:
+        update_dns(record, ip)
     else:
-        ddns(subdomain_id, myip)
+        create_dns(ip)
