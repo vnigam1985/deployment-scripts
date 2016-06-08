@@ -7,6 +7,9 @@ IP which either be the public IP by default, or an internal IP if given device
 name.
 
 It only handles the IP and everything else is default or remain the same.
+
+Usage:
+    ./ddns.py appkey email domain subdomain [device]
 """
 from __future__ import print_function
 import sys
