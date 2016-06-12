@@ -1,4 +1,5 @@
 #!/bin/sh
+# This IP lookup util is only useful for Chinese IP.
 for i in $*;
 do
     curl -s "http://test.ip138.com/query/?ip=$i&datatype=text"; echo
