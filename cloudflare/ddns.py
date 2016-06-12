@@ -85,10 +85,16 @@ def check_subdomain_exists():
     Return the record json or False
     """
     zone_id = get_zone_id()
-    records = cf.zones.dns_records.get(zone_id)
-    for record in records:
-        if record['name'].lower() == '%s.%s' % (SUBDOMAIN.lower(), DOMAIN.lower()):
-            return record
+    page = 1
+    records = cf.zones.dns_records.get(zone_id, params = {'per_page' : 100,
+        'page' : page})
+    while len(records) > 0:
+        for record in records:
+            if record['name'].lower() == '%s.%s' % (SUBDOMAIN.lower(), DOMAIN.lower()):
+                return record
+        page += 1
+        records = cf.zones.dns_records.get(zone_id, params = {'per_page' : 100,
+            'page' : page})
 
     return False
 
