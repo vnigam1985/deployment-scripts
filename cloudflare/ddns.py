@@ -8,8 +8,15 @@ name.
 
 It only handles the IP and everything else is default or remain the same.
 
+Note you need to have a ~/.cloudflare.cfg file with the following info:
+[CloudFlare]
+email = mail@example.com
+token = your_token
+certoken = v1.0-....
+extras = [leave blank here]
+
 Usage:
-    ./ddns.py appkey email domain subdomain [device]
+    ./ddns.py domain subdomain [device]
 """
 from __future__ import print_function
 import sys
@@ -22,20 +29,18 @@ import fcntl
 # Get global value
 arg_length = len(sys.argv)
 
-if arg_length >= 5:
-    APPKEY = sys.argv[1]
-    EMAIL = sys.argv[2]
-    DOMAIN = sys.argv[3]
-    SUBDOMAIN = sys.argv[4]
+if arg_length >= 3:
+    DOMAIN = sys.argv[1]
+    SUBDOMAIN = sys.argv[2]
     DEV = None
-    if arg_length == 6:
-        DEV = sys.argv[5]
+    if arg_length == 4:
+        DEV = sys.argv[3]
 else:
     print("Usage: %s appkey email domain_name subdomain_name [device]" \
             % sys.argv[0], file=sys.stderr)
     sys.exit(1)
 
-cf = CloudFlare.CloudFlare(EMAIL, APPKEY)
+cf = CloudFlare.CloudFlare()
 
 def getip():
     """ Get the WAN ip (ipv4) and return it. """
