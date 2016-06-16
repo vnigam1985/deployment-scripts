@@ -12,7 +12,7 @@ Note you need to have a ~/.cloudflare.cfg file with the following info:
 [CloudFlare]
 email = mail@example.com
 token = your_token
-certoken = v1.0-....
+certtoken = v1.0-....
 extras = [leave blank here]
 
 Usage:
