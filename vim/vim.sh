@@ -59,6 +59,9 @@ else
     git clone https://github.com/Yggdroot/indentLine.git
 fi
 
-curl -sL 'http://www.vim.org/scripts/download_script.php?src_id=19574' -o /tmp/taglist.zip
-unzip -o /tmp/taglist.zip -d ~/.vim
-rm /tmp/taglist.zip
+cd ~/.vim/
+mkdir -p {doc,plugin}
+
+wget https://github.com/vim-scripts/taglist.vim/raw/master/doc/taglist.txt -O ~/.vim/doc/taglist.txt
+
+wget https://github.com/vim-scripts/taglist.vim/raw/master/plugin/taglist.vim -O ~/.vim/plugin/taglist.vim
