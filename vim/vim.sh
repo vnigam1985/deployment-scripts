@@ -59,6 +59,16 @@ else
     git clone https://github.com/Yggdroot/indentLine.git
 fi
 
+cd ~/.vim/bundle
+if [ -d 'javacomplete' ]; then
+    cd javacomplete
+    git stash
+    git stash drop
+    git pull
+else
+    git clone https://github.com/vim-scripts/javacomplete.git
+fi
+
 cd ~/.vim/
 mkdir -p {doc,plugin}
 
