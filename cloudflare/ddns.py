@@ -1,6 +1,6 @@
 #!/usr/bin/python
 """
-Please install cloudflare via pip, e.g. `pip install cloudflare`
+Please install cloudflare and requests via pip, e.g. `pip install cloudflare`
 
 This script handles the creation and update on a given domain, subdomain and an
 IP which either be the public IP by default, or an internal IP if given device
