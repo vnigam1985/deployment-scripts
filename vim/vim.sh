@@ -69,6 +69,16 @@ else
     git clone https://github.com/vim-scripts/javacomplete.git
 fi
 
+cd ~/.vim/bundle
+if [ -d 'ctrlp' ]; then
+    cd ctrlp
+    git stash
+    git stash drop
+    git pull
+else
+    git clone https://github.com/ctrlpvim/ctrlp.vim.git ctrlp
+fi
+
 cd ~/.vim/
 mkdir -p {doc,plugin}
 
