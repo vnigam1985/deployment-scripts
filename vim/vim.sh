@@ -79,6 +79,16 @@ else
     git clone https://github.com/ctrlpvim/ctrlp.vim.git ctrlp
 fi
 
+cd ~/.vim/bundle
+if [ -d 'supertab' ]; then
+    cd supertab
+    git stash
+    git stash drop
+    git pull
+else
+    git clone https://github.com/ervandew/supertab.git
+fi
+
 cd ~/.vim/
 mkdir -p {doc,plugin}
 
