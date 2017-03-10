@@ -417,3 +417,6 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let g:indentLine_color_term = 242
 let g:indentLine_char = '┆'
 let g:indentLine_conceallevel = 0
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'

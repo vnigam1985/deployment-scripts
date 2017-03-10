@@ -89,6 +89,26 @@ else
     git clone https://github.com/ervandew/supertab.git
 fi
 
+cd ~/.vim/bundle
+if [ -d 'vim-surround' ]; then
+    cd vim-surround
+    git stash
+    git stash drop
+    git pull
+else
+    git clone https://github.com/tpope/vim-surround.git
+fi
+
+cd ~/.vim/bundle
+if [ -d 'vim-repeat' ]; then
+    cd vim-repeat
+    git stash
+    git stash drop
+    git pull
+else
+    git clone https://github.com/tpope/vim-repeat.git
+fi
+
 cd ~/.vim/
 mkdir -p {doc,plugin}
 
