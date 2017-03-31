@@ -68,6 +68,7 @@ set lazyredraw
 " For regular expressions turn magic on
 set magic
 
+" Always very magic
 nnoremap / /\v
 vnoremap / /\v
 cnoremap %s/ %smagic/
@@ -420,11 +421,12 @@ let Tlist_WinWidth = 40
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeGlyphReadOnly = 0
 
-let g:indentLine_color_term = 242
+let g:indentLine_color_term = 239
 let g:indentLine_char = '┆'
-let g:indentLine_conceallevel = 0
+let g:indentLine_conceallevel = 2
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_enabled = 0
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
