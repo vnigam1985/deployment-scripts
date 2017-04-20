@@ -1,0 +1,16 @@
+#!/bin/sh
+if [ -z "$1" -o -z "$2" ]; then
+  echo "Please provide first and second currency"
+  exit 1
+fi
+
+unit_price=$(curl -s "http://free.currencyconverterapi.com/api/v3/convert?q=${1}_${2}&compact=y" | jq ".${1}_${2}.val")
+
+echo Unit price buy $1 from $2 is $unit_price.
+
+if [ ! -z "$3" ]; then
+  echo
+  echo -n "$3 $1 is "
+  echo "$3 * $unit_price" | bc -l | tr -d "\n"
+  echo " $2"
+fi
