@@ -1,4 +1,10 @@
 #!/bin/sh
+jq 2> /dev/null
+if [ "$?" != 2 ]; then
+  echo "Please install jq"
+  exit 1
+fi
+
 if [ -z "$1" -o -z "$2" ]; then
   echo "Please provide first and second currency"
   exit 1
