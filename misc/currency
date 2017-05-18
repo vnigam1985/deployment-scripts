@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 jq 2> /dev/null
 if [ "$?" != 2 ]; then
   echo "Please install jq"
@@ -10,7 +10,9 @@ if [ -z "$1" -o -z "$2" ]; then
   exit 1
 fi
 
-unit_price=$(curl -s "http://free.currencyconverterapi.com/api/v3/convert?q=${1}_${2}&compact=y" | jq ".${1}_${2}.val")
+unit_price_f=$(curl -s "http://free.currencyconverterapi.com/api/v3/convert?q=${1}_${2}&compact=y" | jq ".${1}_${2}.val")
+
+unit_price=$(printf "%.8f" $unit_price_f)
 
 echo Unit price buy $1 from $2 is $unit_price.
 
