@@ -10,7 +10,10 @@ if [ -z "$1" -o -z "$2" ]; then
   exit 1
 fi
 
-unit_price_f=$(curl -s "http://free.currencyconverterapi.com/api/v3/convert?q=${1}_${2}&compact=y" | jq ".${1}_${2}.val")
+currency1=`echo -n $1 | tr '[:lower:]' '[:upper:]'`
+currency2=`echo -n $2 | tr '[:lower:]' '[:upper:]'`
+
+unit_price_f=$(curl -s "http://free.currencyconverterapi.com/api/v3/convert?q=${currency1}_${currency2}&compact=y" | jq ".${currency1}_${currency2}.val")
 
 unit_price=$(printf "%.8f" $unit_price_f)
 
