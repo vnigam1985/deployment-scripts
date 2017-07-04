@@ -109,6 +109,16 @@ else
     git clone https://github.com/tpope/vim-repeat.git
 fi
 
+cd ~/.vim/bundle
+if [ -d 'vim-tmux-navigator' ]; then
+    cd vim-tmux-navigator
+    git stash
+    git stash drop
+    git pull
+else
+    git clone https://github.com/christoomey/vim-tmux-navigator.git
+fi
+
 cd ~/.vim/
 mkdir -p {doc,plugin}
 
