@@ -119,6 +119,16 @@ else
     git clone https://github.com/christoomey/vim-tmux-navigator.git
 fi
 
+cd ~/.vim/bundle
+if [ -d 'vim-trailing-whitespace' ]; then
+    cd vim-trailing-whitespace
+    git stash
+    git stash drop
+    git pull
+else
+    git clone https://github.com/bronson/vim-trailing-whitespace.git
+fi
+
 cd ~/.vim/
 mkdir -p {doc,plugin}
 
