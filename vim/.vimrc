@@ -392,6 +392,7 @@ let g:tex_flavor='latex'
 "Plugins
 "================
 execute pathogen#infect()
+map <F8>  :Gblame<CR>
 map <F9>  :IndentLinesToggle<CR>
 map <F10> :NERDTreeToggle<CR>
 map <F11> :Tlist<CR>
