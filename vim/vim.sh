@@ -129,6 +129,16 @@ else
     git clone https://github.com/bronson/vim-trailing-whitespace.git
 fi
 
+cd ~/.vim/bundle
+if [ -d 'vim-fugitive' ]; then
+    cd vim-fugitive
+    git stash
+    git stash drop
+    git pull
+else
+    git clone https://github.com/tpope/vim-fugitive.git
+fi
+
 cd ~/.vim/
 mkdir -p {doc,plugin}
 
