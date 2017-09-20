@@ -1,0 +1,14 @@
+[Unit]
+Description=Activate SS Redir on startup
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/ss-redir -c /etc/ssr.json -f /var/run/ss-redir.pid
+ExecStartPost=/usr/local/bin/ss-nat-helper
+ExecStopPost=/usr/local/bin/ss-nat -f
+PIDFile=/var/run/ss-redir.pid
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target

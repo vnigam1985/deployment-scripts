@@ -135,7 +135,7 @@ if __name__ == "__main__":
     pass
 
   merge_json = merge(env1_json, env2_json)
-  
+
   if args.ifyes is False:
     if os.path.exists(args.merged):
       answer = raw_input("Do you really want to overwrite %s? type YES to proceed: " % args.merged).strip()

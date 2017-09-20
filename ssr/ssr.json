@@ -1,0 +1,18 @@
+{
+    "server": "ip_or_domain",
+    "server_port": 1234,
+    "local_address": "0.0.0.0",
+    "local_port": 8088,
+    "password": "m",
+    "method": "aes-256-cfb",
+    "protocol": "auth_chain_a",
+    "protocol_param": "",
+    "obfs": "tls1.2_ticket_auth",
+    "obfs_param": "cloudflare.com,cloudfront.com",
+    "timeout": 120,
+    "udp_timeout": 60,
+    "dns_ipv6": true,
+    "connect_verbose_info": 0,
+    "redirect": "",
+    "fast_open": true
+}

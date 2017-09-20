@@ -1,0 +1,42 @@
+#!/bin/bash
+
+function valid_ip()
+{
+    local  ip=$1
+    local  stat=1
+
+    if [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+        OIFS=$IFS
+        IFS='.'
+        ip=($ip)
+        IFS=$OIFS
+        [[ ${ip[0]} -le 255 && ${ip[1]} -le 255 \
+            && ${ip[2]} -le 255 && ${ip[3]} -le 255 ]]
+        stat=$?
+    fi
+    return $stat
+}
+
+domain_or_ip=`grep \"server\" /etc/ssr.json | awk '{print $2}' | cut -d '"' -f2`
+port=`grep \"local_port\" /etc/ssr.json | awk '{print $2}' | cut -d, -f1`
+
+if valid_ip $domain_or_ip
+then
+    ip=$domain_or_ip
+else
+    ip=`dig +short $domain_or_ip`
+fi
+
+if [ -z "$ip" ]
+then
+    echo "Domain resolution failed"
+    exit 1
+fi
+
+if [ -z "$port" ]
+then
+    echo "Port field is empty"
+    exit 1
+fi
+
+/usr/local/bin/ss-nat -s $ip -u -o -l $port
