@@ -1,0 +1,28 @@
+#!/bin/bash
+if [ -f /var/tmp/ss-redir.forwarding ]
+then
+    forwarding=0
+else
+    forwarding=`cat /var/tmp/ss-redir.forwarding`
+fi
+
+ss-nat -f
+port=`grep \"local_port\" /etc/ssr.json | awk '{print $2}' | cut -d, -f1`
+ip rule delete fmark 0x01/0x01 table 100
+ip route delete local 0.0.0.0/0 dev lo table 100
+iptables -t mangle -D SSUDP -p udp -j TPROXY --on-port $port --tproxy-mark 0x01/0x01
+iptables -t mangle -D PREROUTING -j SSUDP
+iptables -t mangle -X SSUDP
+iptables -t mangle -D PREROUTING -d 127.0.0.0/24 -j RETURN
+iptables -t mangle -D PREROUTING -d 192.168.0.0/16 -j RETURN
+iptables -t mangle -D PREROUTING -d 10.42.0.0/16 -j RETURN
+iptables -t mangle -D PREROUTING -d 0.0.0.0/8 -j RETURN
+iptables -t mangle -D PREROUTING -d 10.0.0.0/8 -j RETURN
+iptables -t mangle -D PREROUTING -d 172.16.0.0/12 -j RETURN
+iptables -t mangle -D PREROUTING -d 224.0.0.0/4 -j RETURN
+iptables -t mangle -D PREROUTING -d 240.0.0.0/4 -j RETURN
+iptables -t mangle -D PREROUTING -d 169.254.0.0/16 -j RETURN
+iptables -t mangle -D PREROUTING -d 255.255.0.0/8 -j RETURN
+
+# restore forwarding
+sysctl net.ipv4.conf.all.forwarding=$forwarding

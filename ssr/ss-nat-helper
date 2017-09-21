@@ -39,4 +39,24 @@ then
     exit 1
 fi
 
-/usr/local/bin/ss-nat -s $ip -u -o -l $port
+/usr/local/bin/ss-nat -s $ip -l $port -u -o
+
+# enable forwarding
+sysctl net.ipv4.conf.all.forwarding | awk '{print $3}' > /var/tmp/ss-redir.forwarding
+sysctl net.ipv4.conf.all.forwarding=1
+ip rule add fwmark 0x01/0x01 table 100
+ip route add local 0.0.0.0/0 dev lo table 100
+iptables -t mangle -N SSUDP
+iptables -t mangle -A SSUDP -p udp -j TPROXY --on-port $port --tproxy-mark
+0x01/0x01
+iptables -t mangle -A PREROUTING -j SSUDP
+iptables -t mangle -I PREROUTING -d 127.0.0.0/24 -j RETURN
+iptables -t mangle -I PREROUTING -d 192.168.0.0/16 -j RETURN
+iptables -t mangle -I PREROUTING -d 10.42.0.0/16 -j RETURN
+iptables -t mangle -I PREROUTING -d 0.0.0.0/8 -j RETURN
+iptables -t mangle -I PREROUTING -d 10.0.0.0/8 -j RETURN
+iptables -t mangle -I PREROUTING -d 172.16.0.0/12 -j RETURN
+iptables -t mangle -I PREROUTING -d 224.0.0.0/4 -j RETURN
+iptables -t mangle -I PREROUTING -d 240.0.0.0/4 -j RETURN
+iptables -t mangle -I PREROUTING -d 169.254.0.0/16 -j RETURN
+iptables -t mangle -I PREROUTING -d 255.255.0.0/8 -j RETURN
