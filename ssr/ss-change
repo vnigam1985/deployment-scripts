@@ -1,0 +1,10 @@
+#!/bin/sh
+if [ "`whoami`" != "root" ]
+then
+    echo "This util supports root only"
+    exit 1
+fi
+
+systemctl stop ss-redir
+ss-changer $*
+systemctl start ss-redir

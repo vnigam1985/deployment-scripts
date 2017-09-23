@@ -1,0 +1,50 @@
+#!/usr/bin/python3
+#coding: utf-8
+from __future__ import print_function
+import json
+import os
+import sys
+import argparse
+import pdb
+
+parser = argparse.ArgumentParser(prog="ss-changer")
+
+parser.add_argument('--server', '-s', help="ssr server address")
+parser.add_argument('--port', '-p', type=int, help="remote server port")
+parser.add_argument('--local-address', '-l', help="local address binding")
+parser.add_argument('--local-port', '-P', help="local port")
+parser.add_argument('--password', '-e', help='ssr server password')
+parser.add_argument('--method', '-m', help="encryption method")
+parser.add_argument('--protocol', '-L', help="ssr protocol")
+parser.add_argument('--obfs', '-o', help="ssr obfs")
+parser.add_argument('--obfs-param', '-O', help='ssr obfs parameter')
+parser.add_argument('--config', '-c', help='config path, default to\
+/etc/ssr.json', default='/etc/ssr.json')
+ns = parser.parse_args()
+
+try:
+    fd = open(ns.config, mode='rt')
+except:
+    print(ns.config + " does not exists! Quit.", file=sys.stderr)
+    sys.exit(1)
+
+ssrjson = json.loads(fd.read())
+fd.close()
+params = vars(ns)
+
+for k in params.keys():
+    v = params.get(k)
+    if v is None:
+        continue
+    else:
+        ssrjson[k] = v
+
+ssrjson.pop('config')
+
+try:
+    fd = open(ns.config, mode='wt')
+except:
+    print("Unable to write to file " + ns.config, file=sys.stderr)
+else:
+    json.dump(ssrjson, fd, sort_keys=True, indent=4)
+    fd.close()
