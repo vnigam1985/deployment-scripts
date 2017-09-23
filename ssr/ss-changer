@@ -7,6 +7,8 @@ import sys
 import argparse
 import pdb
 
+CONfIG = "/etc/ssr.json"
+
 parser = argparse.ArgumentParser(prog="ss-changer")
 
 parser.add_argument('--server', '-s', help="ssr server address")
@@ -18,14 +20,12 @@ parser.add_argument('--method', '-m', help="encryption method")
 parser.add_argument('--protocol', '-L', help="ssr protocol")
 parser.add_argument('--obfs', '-o', help="ssr obfs")
 parser.add_argument('--obfs-param', '-O', help='ssr obfs parameter')
-parser.add_argument('--config', '-c', help='config path, default to\
-/etc/ssr.json', default='/etc/ssr.json')
 ns = parser.parse_args()
 
 try:
-    fd = open(ns.config, mode='rt')
+    fd = open(CONFIG, mode='rt')
 except:
-    print(ns.config + " does not exists! Quit.", file=sys.stderr)
+    print(CONFIG + " does not exists! Quit.", file=sys.stderr)
     sys.exit(1)
 
 ssrjson = json.loads(fd.read())
@@ -39,12 +39,10 @@ for k in params.keys():
     else:
         ssrjson[k] = v
 
-ssrjson.pop('config')
-
 try:
-    fd = open(ns.config, mode='wt')
+    fd = open(CONFIG, mode='wt')
 except:
-    print("Unable to write to file " + ns.config, file=sys.stderr)
+    print("Unable to write to file " + CONFIG, file=sys.stderr)
 else:
     json.dump(ssrjson, fd, sort_keys=True, indent=4)
     fd.close()
