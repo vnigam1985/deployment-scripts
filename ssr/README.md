@@ -17,4 +17,9 @@ This helper program only supports ssr-libev
 Usage
 ==
 
-Only support systemd enabled systems.
+Only support systemd enabled systems. It can only be run under root.
+
+sudo by default only find binary from /usr/bin:/usr/sbin:/sbin, you can
+manually add /usr/local/bin to the `secure_path`.
+
+ss-change -h for help
