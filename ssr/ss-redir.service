@@ -4,7 +4,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/ss-redir -c /etc/ssr.json -f /var/run/ss-redir.pid -i /etc/cidrskip.txt
+ExecStart=/usr/local/bin/ss-redir -c /etc/ssr.json -f /var/run/ss-redir.pid
 ExecStartPost=/usr/local/bin/ss-nat-helper
 ExecStopPost=/usr/local/bin/ss-nat-disable
 PIDFile=/var/run/ss-redir.pid

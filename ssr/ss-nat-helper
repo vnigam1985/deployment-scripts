@@ -39,7 +39,7 @@ then
     exit 1
 fi
 
-/usr/local/bin/ss-nat -s $ip -l $port -u -o
+/usr/local/bin/ss-nat -s $ip -l $port -u -o -i /etc/cidrskip.txt
 
 # enable forwarding
 sysctl net.ipv4.conf.all.forwarding | awk '{print $3}' > /var/tmp/ss-redir.forwarding
