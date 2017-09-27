@@ -13,7 +13,7 @@ Install ss-\* to /usr/local/bin
 Install ss-redir.service to /etc/systemd/system and reload your systemd daemon
 
 Download your cidr skip list to /etc/cidrskip.txt, you can obtain one from
-[here](https://www.countryipblocks.net/country_selection.php)
+[here](https://www.countryipblocks.net/country_selection.php).
 
 
 This helper program only supports ssr-libev
