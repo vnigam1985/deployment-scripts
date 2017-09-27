@@ -12,6 +12,9 @@ Install ss-\* to /usr/local/bin
 
 Install ss-redir.service to /etc/systemd/system and reload your systemd daemon
 
+Download your cidr skip list to /etc/cidrskip.txt, you can obtain one from:
+https://www.ip2location.com/free/visitor-blocker
+
 This helper program only supports ssr-libev
 
 Usage
