@@ -5,7 +5,6 @@ import json
 import os
 import sys
 import argparse
-import pdb
 
 CONfIG = "/etc/ssr.json"
 
