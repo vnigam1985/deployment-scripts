@@ -6,7 +6,7 @@ import os
 import sys
 import argparse
 
-CONfIG = "/etc/ssr.json"
+CONFIG = "/etc/ssr.json"
 
 parser = argparse.ArgumentParser(prog="ss-changer")
 
