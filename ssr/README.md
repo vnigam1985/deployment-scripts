@@ -16,7 +16,8 @@ Download your cidr skip list to /etc/cidrskip.txt, you can obtain one from
 [here](https://www.countryipblocks.net/country_selection.php).
 
 
-This helper program only supports ssr-libev
+This helper program only supports ssr-libev, but you can easily change the code
+to fit the standard ss as well.
 
 Usage
 ==
