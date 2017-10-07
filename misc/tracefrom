@@ -1,0 +1,73 @@
+#!/usr/bin/python3
+#-*- coding: utf-8 -*-
+"""
+使用方法：
+./parser.py ip 节点名字
+"""
+
+from __future__ import print_function
+from bs4 import BeautifulSoup
+import re
+import pdb
+import json
+import sys
+import requests as rq
+
+
+if len(sys.argv) != 3:
+    sys.exit(1)
+
+maps = {
+    u'上海电信' : '275',
+    u'上海移动' : '356',
+    u'江苏联通' : '314',
+    u'北京教育网' : '405',
+    u'北京移动' : '423',
+    u'北京电信' : '254',
+    u'广州电信' : '99',
+    u'广州移动' : '424',
+    u'广州联通' : '327',
+}
+
+if not [0 <= int(x)<256 for x in re.split('\.',re.match(r'^\d+\.\d+\.\d+\.\d+$', sys.argv[1]).group(0))].count(True) == 4:
+    sys.exit(1)
+else:
+    ip = sys.argv[1]
+
+if sys.argv[2] in maps.keys():
+    baseurl = "https://www.ipip.net/traceroute.php?as=1&a=get&n=1&id=%s&t=I&ip=" % maps[sys.argv[2]]
+else:
+    sys.exit(1)
+
+r = rq.get(baseurl + ip)
+ft = r.text
+
+soup = BeautifulSoup(ft, 'lxml')
+
+scripts = soup.find_all('script')
+
+pattern1 = re.compile('<a.*?>')
+pattern2 = re.compile('<\\\/a>')
+pattern3 = re.compile(r"parent.resp_once\('(\d*)', (.*)\)")
+
+for script in scripts:
+    text = script.text
+    matches = pattern1.findall(text)
+    if matches:
+        for m in matches:
+            text = text.replace(m, '')
+
+    matches = pattern2.findall(text)
+    if matches:
+        for m in matches:
+            text = text.replace(m, '')
+
+    matches = pattern3.match(text)
+    if matches:
+        hop = int(matches.group(1))
+        detail = json.loads(matches.group(2))
+        ip = detail[0]['ip']
+        area = detail[0]['area']
+        latency = detail[0]['time']
+
+        print("%-3s %-15s %-25s %-20s" % (hop, ip, latency, area))
