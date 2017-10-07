@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 """
 使用方法：
-./parser.py ip 节点名字
+./parser.py 节点名字 ip
 """
 
 from __future__ import print_function
@@ -17,6 +17,12 @@ import requests as rq
 if len(sys.argv) != 3:
     sys.exit(1)
 
+node_name = sys.argv[1]
+ip = sys.argv[2]
+
+if not [0 <= int(x)<256 for x in re.split('\.',re.match(r'^\d+\.\d+\.\d+\.\d+$', ip).group(0))].count(True) == 4:
+    sys.exit(1)
+
 maps = {
     u'上海电信' : '275',
     u'上海移动' : '356',
@@ -29,13 +35,8 @@ maps = {
     u'广州联通' : '327',
 }
 
-if not [0 <= int(x)<256 for x in re.split('\.',re.match(r'^\d+\.\d+\.\d+\.\d+$', sys.argv[1]).group(0))].count(True) == 4:
-    sys.exit(1)
-else:
-    ip = sys.argv[1]
-
-if sys.argv[2] in maps.keys():
-    baseurl = "https://www.ipip.net/traceroute.php?as=1&a=get&n=1&id=%s&t=I&ip=" % maps[sys.argv[2]]
+if node_name in maps.keys():
+    baseurl = "https://www.ipip.net/traceroute.php?as=1&a=get&n=1&id=%s&t=I&ip=" % maps[node_name]
 else:
     sys.exit(1)
 
