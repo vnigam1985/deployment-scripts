@@ -8,7 +8,7 @@ fi
 
 ss-nat -f
 port=`grep \"local_port\" /etc/ssr.json | awk '{print $2}' | cut -d, -f1`
-ip rule delete fmark 0x01/0x01 table 100
+ip rule delete fwmark 0x01/0x01 table 100
 ip route delete local 0.0.0.0/0 dev lo table 100
 iptables -t mangle -D SSUDP -p udp -j TPROXY --on-port $port --tproxy-mark 0x01/0x01
 iptables -t mangle -D PREROUTING -j SSUDP
