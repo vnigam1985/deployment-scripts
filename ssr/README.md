@@ -22,8 +22,7 @@ to fit the standard ss as well.
 Usage
 ==
 
-Only support systemd enabled systems. It can only be run under root. Only
-support eth0 card, unless you change the code.
+Only support systemd enabled systems. It can only be run under root.
 
 sudo by default only find binary from /usr/bin:/usr/sbin:/sbin, you can
 manually add /usr/local/bin to the `secure_path` in the sudoer file.
