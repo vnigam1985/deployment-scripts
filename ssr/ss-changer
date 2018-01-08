@@ -11,9 +11,9 @@ CONFIG = "/etc/ssr.json"
 parser = argparse.ArgumentParser(prog="ss-changer")
 
 parser.add_argument('--server', '-s', help="ssr server address")
-parser.add_argument('--port', '-p', type=int, help="remote server port")
+parser.add_argument('--server_port', '-p', type=int, help="remote server port")
 parser.add_argument('--local-address', '-l', help="local address binding")
-parser.add_argument('--local-port', '-P', help="local port")
+parser.add_argument('--local-port', '-P', help="local port binding")
 parser.add_argument('--password', '-e', help='ssr server password')
 parser.add_argument('--method', '-m', help="encryption method")
 parser.add_argument('--protocol', '-L', help="ssr protocol")
