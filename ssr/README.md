@@ -24,7 +24,9 @@ Usage
 
 Only support systemd enabled systems. It can only be run under root.
 
-sudo by default only find binary from /usr/bin:/usr/sbin:/sbin, you can
-manually add /usr/local/bin to the `secure_path` in the sudoer file.
+Please stop and disable ufw or firewalld, use iptables only.
+
+sudo by default only find binary from `/usr/bin:/usr/sbin:/sbin`, you can
+manually add `/usr/local/bin` to the `secure_path` in the sudoer file.
 
 ss-change -h for help
