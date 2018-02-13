@@ -1,7 +1,7 @@
 Prerequisites
 ==
 
-Compile and install ssr-libev.
+Compile and install [ssr-libev](https://github.com/shadowsocksr-backup/shadowsocksr-libev).
 
 Installation notes
 ==
