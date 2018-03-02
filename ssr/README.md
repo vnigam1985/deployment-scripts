@@ -30,3 +30,5 @@ sudo by default only find binary from `/usr/bin:/usr/sbin:/sbin`, you can
 manually add `/usr/local/bin` to the `secure_path` in the sudoer file.
 
 ss-change -h for help
+
+For Ubuntu user, please install ipset and dnsutils.
