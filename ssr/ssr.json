@@ -7,7 +7,7 @@
     "method": "aes-256-cfb",
     "obfs": "tls1.2_ticket_auth",
     "obfs_param": "cloudflare.com,cloudfront.com",
-    "password": "HlX98007",
+    "password": "password",
     "protocol": "auth_chain_a",
     "protocol_param": "",
     "redirect": "",
