@@ -11,7 +11,7 @@
     "protocol": "auth_chain_a",
     "protocol_param": "",
     "redirect": "",
-    "server": "us.gate.huang.cool",
+    "server": "x.x.x.x",
     "server_port": 1234,
     "timeout": 120,
     "udp_timeout": 60
