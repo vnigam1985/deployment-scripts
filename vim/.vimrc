@@ -434,3 +434,5 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " Default Python 3 syntax
 let g:pymode_python = 'python3'
+let g:pymode_options = 0
+let g:pymode_doc = 0
