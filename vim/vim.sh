@@ -139,6 +139,16 @@ else
     git clone https://github.com/tpope/vim-fugitive.git
 fi
 
+cd ~/.vim/bundle
+if [ -d 'python-mode' ]; then
+    cd python-mode
+    git stash
+    git stash drop
+    git pull
+else
+    git clone --recursive https://github.com/python-mode/python-mode.git
+fi
+
 cd ~/.vim/
 mkdir -p {doc,plugin}
 

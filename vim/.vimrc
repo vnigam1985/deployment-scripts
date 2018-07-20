@@ -431,3 +431,6 @@ let g:indentLine_enabled = 0
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+" Default Python 3 syntax
+let g:pymode_python = 'python3'
