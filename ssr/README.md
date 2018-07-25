@@ -3,6 +3,8 @@ Prerequisites
 
 Compile and install [ssr-libev](https://github.com/shadowsocksr-backup/shadowsocksr-libev).
 
+Dependency: asciidoc xmlto
+
 Installation notes
 ==
 
