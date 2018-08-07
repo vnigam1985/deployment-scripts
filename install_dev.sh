@@ -35,7 +35,7 @@ else
 fi
 
 # Install some of dependencies
-echo "$SUDO_PASS" | sudo -S $INSTALLER install -y epel-release python-crypto screen vim redhat-lsb-core unzip
+echo "$SUDO_PASS" | sudo -S $INSTALLER install -y epel-release python-crypto screen vim redhat-lsb-core unzip find-fd
 echo "$SUDO_PASS" | sudo -S $INSTALLER install -y htop sysstat tmux zsh nmon inxi wget python-pip ack xclip ctags jq bc
 echo "$SUDO_PASS" | sudo -S $INSTALLER update -y
 sudo pip install goobook
