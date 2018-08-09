@@ -98,12 +98,12 @@ colorscheme desert
 set background=dark
 
 " Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
+"if has("gui_running")
+    "set guioptions-=T
+    "set guioptions+=e
+    "set t_Co=256
+    "set guitablabel=%M\ %t
+"endif
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -131,8 +131,8 @@ set expandtab
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 80 characters
 set lbr
@@ -170,7 +170,7 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
@@ -283,9 +283,6 @@ map <leader>q :e ~/buffer<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-" ctrlp fuzzy finder
-map <leader>e :CtrlP<CR>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -349,16 +346,16 @@ endfunction
 "Auto Complete and Abbreviations
 "================
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType c set omnifunc=ccomplete
-autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html set tw=79
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType java set omnifunc=javacomplete#Complete
-autocmd FileType java set completefunc=javacomplete#CompleteParamsInfo
-
-au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+"autocmd FileType c set omnifunc=ccomplete
+"autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
+"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType html set tw=79
+"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+"autocmd FileType java set omnifunc=javacomplete#Complete
+"autocmd FileType java set completefunc=javacomplete#CompleteParamsInfo
+"
+"au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 
 "================
 "Mouse on
@@ -378,7 +375,7 @@ au BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
+"set grepprg=grep\ -nH\ $*
 "
 " OPTIONAL: This enables automatic indentation as you type.
 filetype indent on
@@ -386,7 +383,7 @@ filetype indent on
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
+"let g:tex_flavor='latex'
 
 "================
 "Plugins
@@ -432,7 +429,35 @@ let g:indentLine_enabled = 0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
+" YouCompleteMe
+
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+set completeopt=menu,menuone
 " Default Python 3 syntax
 let g:pymode_python = 'python3'
 let g:pymode_options = 0
 let g:pymode_doc = 0
+
+"noremap <c-z> <NOP>
+
+"let g:ycm_semantic_triggers =  {
+  "\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+  "\ 'cs,lua,javascript': ['re!\w{2}'],
+  "\ }
+
+"let g:ycm_filetype_whitelist = {
+  "\ "c":1,
+  "\ "cpp":1,
+  "\ "objc":1,
+  "\ "sh":1,
+  "\ "zsh":1,
+  "\ "zimbu":1,
+  "\ }
+
+"silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
