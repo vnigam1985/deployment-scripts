@@ -24,13 +24,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 cd ~
 
 cp $ZSH_TEMPLATE_LOCATION/.zshrc ~
-# Copy over curlrc
-if [ $(lsb_release -i | cut -f 2) = "Fedora" ]; then
-    cp $ZSH_TEMPLATE_LOCATION/.curlrc ~
-    if [ `whoami` = "root" ]; then
-        cp $ZSH_TEMPLATE_LOCATION/.curlrc /etc/skel/
-    fi
-fi
 
 if [ `whoami` = "root" ]; then
     sed -i "s/fino/rgm/g" ~/.zshrc
